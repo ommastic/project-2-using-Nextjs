@@ -169,6 +169,20 @@ button:disabled {
   line-height: 1.5;
 }
 
+/* ACTIVE TITLE */
+.statistics__heading{
+  color: #6b757b;
+  font-weight: 500;
+  font-size: 32px;
+  margin-bottom: 16px;
+  transition: color 250ms ease, transform 250ms ease, opacity 250ms ease;
+  opacity: 0.6;
+}
+
+.statistics__heading.is-active{
+  color: #2bd97c;
+}
+
 /* FEATURES */
 .features__wrapper {
   display: grid;
