@@ -1,10 +1,10 @@
 import Image from "next/image";
-import Navbar from "@/components/Navbar";
-import Landing from "@/components/Landing";
-import Features from "@/components/Features";
-import Reviews from "@/components/Reviews";
-import Numbers from "@/components/Numbers";
-import Footer from "@/components/Footer";
+import Navbar from "@/components/web/Navbar";
+import Landing from "@/components/web/Landing";
+import Features from "@/components/web/Features";
+import Reviews from "@/components/web/Reviews";
+import Numbers from "@/components/web/Numbers";
+import Footer from "@/components/web/Footer";
 
 export default function Home() {
   return (

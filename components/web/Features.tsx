@@ -28,7 +28,7 @@ export default function features(){
     useEffect(() => {
         const val = setInterval(() => {
             setActiveTitle(prev => (prev + 1) % leftHeadings.length)
-        }, 2000)
+        }, 1500)
         return () => clearInterval(val)
     }, [])
 

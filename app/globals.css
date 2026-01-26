@@ -39,14 +39,14 @@ button:disabled {
   opacity: 0.65;
 }
 
-.row {
+.container {
   max-width: 1070px;
   width: 100%;
   margin: 0 auto;
   padding: 0 24px;
 }
 
-.container {
+.row {
   padding: 40px 0;
   width: 100%;
 }

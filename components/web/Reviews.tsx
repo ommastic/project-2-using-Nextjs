@@ -3,8 +3,8 @@ import { BsStarFill } from "react-icons/bs";
 export default function Reviews(){
     return (
         <section id="reviews">
-      <div className="row">
-        <div className="container">
+      <div className="container">
+        <div className="row">
           <div className="section__title">What our members say</div>
           <div className="reviews__wrapper">
             <div className="review">
