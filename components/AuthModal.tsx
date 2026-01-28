@@ -25,7 +25,7 @@ export default function AuthModal({ open, onClose, onSuccess }: Props) {
 
   return (
     <div  className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onMouseDown={onClose}>
-        <div className="w-full max-w-md rounded-2xl bg-white p-6"
+        <div className="w-full max-w-xl rounded-xl bg-white p-8 shadow-2xl min-h-120"
             onMouseDown={(e) => e.stopPropagation()}>
 
 
