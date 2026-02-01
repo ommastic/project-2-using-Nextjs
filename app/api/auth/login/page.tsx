@@ -1,11 +1,30 @@
-import AuthForm from "@/components/AuthForm";
+"use-client"
+
+
+import { useState } from "react";
+import { useRouter } from "next/router";
+import ForgotPasswordModal from "@/components/auth/ForgotPasswordModal";
+import AuthForm from "@/components/auth/AuthForm";
+
+
 
 export default function LoginPage(){
+    const router = useRouter()
+    const [showReset, setShowReset] = useState(false)
+
     return (
-        <div className="flex items-center justify-center p-4 min-h-screen">
-            <div className="w-full max-w-xl rounded-2xl bg-white p-10 shadow-lg ">
-                <AuthForm onSuccess={() => { } } />
+        <>
+        <main className="login-page">
+            <div className="login-card">
+                <AuthForm onSuccess={(user) => { 
+                    console.log("Logged in:", user)
+                    router.push("/")
+                } } 
+                onForgotPassword={() => setShowReset(true)}/>
             </div>
-        </div>
+        </main>
+
+        <ForgotPasswordModal open={showReset} onClose={() => setShowReset(false)} onGoToLogIn={() => setShowReset(false)} />
+        </>
     )
 }

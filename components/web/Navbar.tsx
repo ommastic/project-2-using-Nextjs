@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import AuthModal from "../AuthModal";
+import AuthModal from "../auth/AuthModal";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
