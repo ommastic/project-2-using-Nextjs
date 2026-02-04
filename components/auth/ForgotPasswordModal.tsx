@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import sendPasswordResetEmail
+import { sendPasswordResetEmail } from "firebase/auth"
+import { auth } from "@/firebase"
 
 type Props = {
   open: boolean;
@@ -16,7 +17,7 @@ export default function ForgotPasswordModal({
 }: Props) {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<{ text: string; type: "ok" | "error" } | null>(null);
 
   // lock scroll when the modal is on
   useEffect(() => {
@@ -34,55 +35,56 @@ export default function ForgotPasswordModal({
 
   async function sendReset(e: React.FormEvent) {
     e.preventDefault();
-    setMessage("");
+    setMessage(null);
     setLoading(true);
 
     try {
-      await fetch("api/auth/forgot-password", { method: "POST" });
-      await new Promise((r) => setTimeout(r, 600));
-      setMessage(
-        "If the email you entered exists, a reset link has been sent.",
-      );
-    } catch {
-      setMessage("Something went wrong. Please try again.");
+      await sendPasswordResetEmail(auth, email)
+      setMessage({
+       text: "If the email you entered exists, a reset link has been sent.",
+       type: "ok"
+    });
+    } catch(error: any){
+      const code = error?.code || ""
+      let text = "Something went wrong. Please try again."
+      if (code === "auth/invalid-email"){
+        text = "Please enter a valid email address"
+      }
+      if (code === "auth/too-many-requests"){
+        text = "Too many requests. Try again later"
+      }
+      if (code === "auth/user-not-found"){
+        text: "No account found for that email"
+      }
+      setMessage({ text, type: "error"})
     } finally {
       setLoading(false);
     }
   }
+    let messageClass = "reset-message"
+    if (message ?.type === "error"){
+        messageClass += " error"
+    }
 
   return (
     <div className="reset-overlay" onMouseDown={onClose}>
-      <div className="reset-modal" onMouseDown={(e) => e.stopPropagation()}>
+      <div className="reset-modal" onMouseDown={(e) => e.stopPropagation()} aria-modal="true">
         <button onClick={onClose} className="reset-close" aria-label="Close">
           x
         </button>
 
-        <AuthForm
-          onSuccess={(user) => {
-            onSuccess?.(user);
-            onClose();
-          }}
-        />
+        <div className="reset-title">Reset your password</div>
+        <form className="reset-form" onSubmit={sendReset}>
+            <input type="email" className="reset-input" placeholder="Email Address" value={email} onChange={e => setEmail(e.target.value)} required/>
+            <button className="reset-button" disabled={loading}>
+                {loading ? "Sending..." : "Send reset password link"}
+            </button>
+         
+            {message && (
+                <div className={messageClass}>{message.text}</div>
+            )}
+        </form>
       </div>
     </div>
-  );
-}
-
-
-import { useRouter } from "next/navigation";
-import AuthForm from "./AuthForm";
-
-export default function LoginPage() {
-  const router = useRouter();
-
-  return (
-    <main className="login-page">
-      <div className="login-card">
-        <AuthForm
-          onSuccess={() => router.push("/")}
-          onForgotPassword={() => router.push("auth/reset")}
-        />
-      </div>
-    </main>
   );
 }
