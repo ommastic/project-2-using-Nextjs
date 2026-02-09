@@ -1,6 +1,12 @@
+"use client"
+
 import Image from "next/image"
+import { useAuthModal } from "../auth/AuthModalProvider"
+
 
 export default function Landing(){
+  const { openLogin } = useAuthModal()
+
     return (
     <section id="landing">
       <div className="container">
@@ -18,7 +24,7 @@ export default function Landing(){
                 <br className="remove--tablet" />
                 and even people who don’t like to read.
               </div>
-              <button className="btn home__cta--btn">Login</button>
+              <button onClick={openLogin} className="btn home__cta--btn">Login</button>
             </div>
             <figure className="landing__image--mask">
               <Image src="/landing.png" alt="landing" width={779} height={740}/>

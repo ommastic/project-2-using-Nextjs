@@ -25,14 +25,17 @@ export default function AuthModal({ open, onClose, onSuccess }: Props) {
   return (
     <div className="auth-overlay" onMouseDown={onClose}>
       <div className="auth-modal" onMouseDown={(e) => e.stopPropagation()}>
-        <button onClick={onClose} className="remove-modal">x</button>
-
-        <AuthForm
-          onSuccess={(user) => {
-            onSuccess?.(user);
-            onClose();
-          }}
-        />
+        <button className="remove-modal" onClick={onClose}>
+          x
+        </button>
+        <div className="auth-modal--inner">
+          <AuthForm
+            onSuccess={(user) => {
+              onSuccess?.(user);
+              onClose();
+            }}
+          />
+        </div>
       </div>
     </div>
   );

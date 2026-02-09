@@ -113,11 +113,11 @@ export default function AuthForm({
                 onClick={loginGoogle}
                 disabled={guestLoading || loading}
               >
-                <span className="auth-divider-text">G</span>
-                Login with Google
+                <span className="auth-google-icon">G</span>
+                { mode === "login" ? "Login with Google" : "Sign up with Google"}
               </button>
             </div>
-            <div className="auth-divider">
+            <div className="auth-divider auth-divider--spaced">
               <div className="auth-divider-line" />
               <span className="auth-divider-text">or</span>
               <div className="auth-divider-line" />
@@ -125,7 +125,7 @@ export default function AuthForm({
           </>
         )}
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="auth-form--fields">
           <input
             className="auth-input"
             type="email"
@@ -144,38 +144,45 @@ export default function AuthForm({
           />
           {err && <p className="auth-error">{err}</p>}
 
-          <button type="submit" className="auth-btn auth-submit" disabled={loading}>
+          <button
+            type="submit"
+            className="auth-btn auth-submit"
+            disabled={loading}
+          >
             {loading ? "loading..." : mode === "login" ? "Log in" : "Sign up"}
           </button>
         </form>
 
         <div className="auth-switch">
           {mode === "login" ? (
-            <div className="auth-switch-wrapper">
-              <button
-                onClick={ onForgotPassword }
-                className="auth-switch-title"
-              >
-                Forgot your password
+            <div className="auth-switch--wrapper">
+              <button onClick={onForgotPassword} className="auth-link">
+                Forgot your password?
               </button>
-              <div>
+              <div className="auth-bottom--strip">
                 <button
                   onClick={() => {
                     setErr("");
-                    setMode("signup")}}
-                  className="auth-switch-title"
+                    setMode("signup");
+                  }}
+                  className="auth-link auth-link--strong"
                 >
-                  Don't have an account 
+                  Don't have an account?
                 </button>
               </div>
             </div>
           ) : (
             showSwitch && (
-              <button onClick={() => {
+              <div className="auth-bottom--strip">
+                <button
+                  onClick={() => {
                     setErr("");
-                    setMode("login")}}>
-                Already have an account
-              </button>
+                    setMode("login");
+                  }}
+                >
+                  Already have an account?
+                </button>
+              </div>
             )
           )}
         </div>

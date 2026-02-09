@@ -193,90 +193,78 @@ button:disabled {
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.6);
-  padding: 1rem;
+  padding: 16px;
 }
 
 .auth-modal {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  height: 550px;
+  max-width: 420px;
   background: #ffffff;
   border-radius: 16px;
-  padding: 16px;
+  text-decoration: none;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-.auth-switch-title{
-  font-size: 14px;
+.auth-modal--inner{
+  padding: 24px;
 }
 
 /* Close button */
-.auth-close {
+.auth-close,
+.remove-modal{
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 16px;
+  right: 16px;
   border: none;
   background: transparent;
-  font-size: 1.2rem;
+  font-size: 22px;
+  padding: 8px 10px;
+  font-weight: 700;
   cursor: pointer;
   color: #6b7280;
+  border-radius: 8px;
 }
 
 .auth-close:hover {
   color: #111827;
+  background: #f3f4f6;
 }
+
+/*Form*/
 
 .auth-form {
   width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .auth-title {
   text-align: center;
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
+  flex-direction: 18px;
   color: #111827;
-  margin-top: 2rem;
+  margin: 18px 0 16px;
 
 }
 
-.auth-form {
+.auth-form--fields {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 12px;
+  margin-top: 12px;
 }
 
 /* Inputs */
 .auth-input {
   width: 100%;
-  padding: 0.75rem 1rem;
-  margin-bottom: 1.25rem;
+  padding: 14px 16px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
-
-.remove-modal{
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  font-size: 24px;
-  padding: 8px 8px;
-  font-weight: 600;
-  border: none;
-  background: transparent;
-  color: #6b7280;
-  cursor: pointer;
-  line-height: 1;
-  padding: 8px 8px;
-}
-
-.remove-modal:hover{
-  color: #111827;
-  background: #f3f4f6;
-  border-radius: 4px;
-}
-
 .auth-input:focus {
   outline: none;
   border-color: #3b82f6;
@@ -296,22 +284,22 @@ button:disabled {
 .auth-actions {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
-  margin-top: 0.5rem;
+  gap: 10px;
+ 
 }
 
 .auth-btn {
   width: 100%;
   border: none;
   border-radius: 8px;
-  padding: 0.75rem 1rem;
-  font-size: 0.875rem;
-  font-weight: 600;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.6rem;
+  gap: 10px;
 }
 
 .auth-btn:disabled {
@@ -319,9 +307,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/*Buttons*/
 .auth-btn-guest {
   background: #334155; /* slate */
-  color: white;
+  color: #fff;
 }
 
 .auth-btn-guest:hover {
@@ -330,18 +319,20 @@ button:disabled {
 
 .auth-btn-google {
   background: #3b82f6;
-  color: white;
+  color: #fff;
 }
 
 .auth-btn-google:hover {
   background: #2563eb;
 }
 
+/*Divider */
+
 .auth-divider {
   display: flex;
   align-items: center;
-  gap: 4px;
-  margin: 4px 0;
+  gap: 6px;
+  margin: 6px 0;
 }
 
 .auth-divider-line {
@@ -351,7 +342,7 @@ button:disabled {
 }
 
 .auth-divider-text {
-  font-size: 0.75rem;
+  font-size: 12px;
   color: #6b7280;
 }
 
@@ -359,36 +350,51 @@ button:disabled {
 .auth-submit {
   background: #10b981;
   color: #ffffff;
-  padding: 0.75rem;
-  border-radius: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
 }
 
 .auth-submit:hover {
   background: #059669;
 }
 
-.auth-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
 /* Footer switch */
 .auth-switch {
-  margin-top: 1rem;
+  margin-top: 14px;
   text-align: center;
-  font-size: 0.875rem;
+  font-size: 14px;
 }
 
-.auth-switch button {
-  background: none;
-  border: none;
-  color: #2563eb;
+.auth-switch--wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+
+.auth-link{
+  font-size: 14px;
+  color: #116be9;
+}
+
+.auth-link:hover{
   cursor: pointer;
-  text-decoration: underline;
+}
+
+.auth-link--strong{
+  font-size: 16px;
+}
+
+
+.auth-bottom--strip{
+  background: #f1f6f4;
+  padding: 16px 24px;
+  margin-top: 10px;
+  color: #116be9;
+  font-weight: 300;
+  text-align: center;
+}
+
+.auth-bottom--strip:hover{
+  cursor: pointer;
 }
 
 /* FEATURES */

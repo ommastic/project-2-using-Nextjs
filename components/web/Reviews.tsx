@@ -1,6 +1,13 @@
+"use client"
+
 import { BsStarFill } from "react-icons/bs";
+import { useAuthModal } from "../auth/AuthModalProvider";
+
 
 export default function Reviews(){
+
+  const { openLogin } = useAuthModal()
+
     return (
         <section id="reviews">
       <div className="container">
@@ -63,7 +70,7 @@ export default function Reviews(){
             </div>
           </div>
           <div className="reviews__btn--wrapper">
-            <button className="btn home__cta--btn">Login</button>
+            <button onClick={openLogin} className="btn home__cta--btn">Login</button>
           </div>
         </div>
       </div>
