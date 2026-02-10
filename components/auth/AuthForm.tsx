@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import Image from "next/image";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 
 type Mode = "login" | "signup";
@@ -113,7 +113,7 @@ export default function AuthForm({
                 onClick={loginGoogle}
                 disabled={guestLoading || loading}
               >
-                <span className="auth-google-icon">G</span>
+                <span className="auth-google-icon"><Image src="/google.png" alt="Google-logo" width={30} height={30} priority/></span>
                 { mode === "login" ? "Login with Google" : "Sign up with Google"}
               </button>
             </div>
@@ -190,3 +190,7 @@ export default function AuthForm({
     </>
   );
 }
+function signIn(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+

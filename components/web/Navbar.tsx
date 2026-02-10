@@ -18,13 +18,13 @@ export default function Navbar() {
 
         <ul className="nav__list--wrapper">
           <li onClick={ openLogin } className="nav__list nav__list--login">Login</li>
-          <li className="nav__list nav__list--mobile">
+          <li className="nav__list nav__list--mobile nav__list--status">
             <Link href="/about">About</Link>
           </li>
-          <li className="nav__list nav__list--mobile">
+          <li className="nav__list nav__list--mobile nav__list--status">
             <Link href="/contact">Contact</Link>
           </li>
-          <li className="nav__list nav__list--mobile">
+          <li className="nav__list nav__list--mobile nav__list--status">
             <Link href="/help">Help</Link>
           </li>
         </ul>

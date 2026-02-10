@@ -110,6 +110,11 @@ button:disabled {
   gap: 24px;
 }
 
+.nav__list--status {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .nav__img--mask {
   max-width: 200px;
 }

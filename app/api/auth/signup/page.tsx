@@ -5,15 +5,12 @@ import AuthForm from "@/components/auth/AuthForm";
 
 export default function LoginPage(){
     const router = useRouter()
-   
 
     return (
-        <>
         <main className="signup-page">
             <div className="signup-card">
-                <AuthForm defaultMode="signup" showAltAuth={false} showSwitch={false}/> 
+                <AuthForm defaultMode="signup" showAltAuth={false} onSuccess={() => router.push("/LoginPage")} showSwitch={false}/> 
             </div>
         </main>
-        </>
     )
 }
