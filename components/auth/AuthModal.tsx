@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import AuthForm from "./AuthForm";
+import { RiCloseLargeLine } from "react-icons/ri"
 
 type Props = {
   open: boolean;
@@ -23,12 +24,11 @@ export default function AuthModal({ open, onClose, onSuccess }: Props) {
   if (!open) return null;
 
   return (
-    <div className="auth-overlay" onMouseDown={onClose}>
-      <div className="auth-modal" onMouseDown={(e) => e.stopPropagation()}>
-        <button className="remove-modal" onClick={onClose}>
-          x
+    <div className="auth__wrapper" onMouseDown={onClose}>
+      <div className="auth__modal" onMouseDown={(e) => e.stopPropagation()}>
+        <button className="remove__modal" onClick={onClose}>
+          <RiCloseLargeLine />
         </button>
-        <div className="auth-modal--inner">
           <AuthForm
             onSuccess={(user) => {
               onSuccess?.(user);
@@ -37,6 +37,5 @@ export default function AuthModal({ open, onClose, onSuccess }: Props) {
           />
         </div>
       </div>
-    </div>
   );
 }

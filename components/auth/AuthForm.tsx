@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import { FaRegUser } from "react-icons/fa";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 
 type Mode = "login" | "signup";
@@ -84,108 +85,118 @@ export default function AuthForm({
   }
   return (
     <>
-      <div className="auth-form">
-        <h2 className="auth-title">
-          {mode === "login" ? "Log in to Summarist" : "Create your account"}
-        </h2>
+    <div className="auth__modal--inner">
+      <h2 className="auth-title">
+        {mode === "login" ? "Log in to Summarist" : "Create your account"}
+      </h2>
 
-        {showAltAuth && mode === "login" && (
-          <>
-            <div className="auth-actions">
-              <button
-                type="button"
-                className="auth-btn auth-btn-guest"
-                onClick={loginGuest}
-                disabled={guestLoading || loading}
-              >
-                Login as a Guest
-              </button>
+      {showAltAuth && mode === "login" && (
+        <>
+          <div className="auth-actions">
+            <button
+              type="button"
+              className="auth-btn auth-btn-guest"
+              onClick={loginGuest}
+              disabled={guestLoading || loading}
+            >
+              <span className="user-icon">
+                <FaRegUser width={24} height={24} />
+              </span>
+              Login as a Guest
+            </button>
 
-              <div className="auth-divider">
-                <div className="auth-divider-line" />
-                <span className="auth-divider-text">or</span>
-                <div className="auth-divider-line" />
-              </div>
-
-              <button
-                type="button"
-                className="auth-btn auth-btn-google"
-                onClick={loginGoogle}
-                disabled={guestLoading || loading}
-              >
-                <span className="auth-google-icon"><Image src="/google.png" alt="Google-logo" width={30} height={30} priority/></span>
-                { mode === "login" ? "Login with Google" : "Sign up with Google"}
-              </button>
-            </div>
-            <div className="auth-divider auth-divider--spaced">
+            <div className="auth-divider">
               <div className="auth-divider-line" />
               <span className="auth-divider-text">or</span>
               <div className="auth-divider-line" />
             </div>
-          </>
-        )}
 
-        <form onSubmit={onSubmit} className="auth-form--fields">
-          <input
-            className="auth-input"
-            type="email"
-            value={email}
-            placeholder="Email Address"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            className="auth-input"
-            type="password"
-            value={password}
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-          {err && <p className="auth-error">{err}</p>}
+            <button
+              type="button"
+              className="auth-btn auth-btn-google"
+              onClick={loginGoogle}
+              disabled={guestLoading || loading}
+            >
+              <span className="google-button__icon">
+                <Image
+                  src="/google.png"
+                  alt="Google-logo"
+                  width={24}
+                  height={24}
+                />
+              </span>
+              {mode === "login" ? "Login with Google" : "Sign up with Google"}
+            </button>
+          </div>
+          <div className="auth-divider auth-divider--spaced">
+            <div className="auth-divider-line" />
+            <span className="auth-divider-text">or</span>
+            <div className="auth-divider-line" />
+          </div>
+        </>
+      )}
 
-          <button
-            type="submit"
-            className="auth-btn auth-submit"
-            disabled={loading}
-          >
-            {loading ? "loading..." : mode === "login" ? "Log in" : "Sign up"}
-          </button>
-        </form>
+      <form onSubmit={onSubmit} className="auth-form--fields">
+        <input
+          className="auth-input"
+          type="email"
+          value={email}
+          placeholder="Email Address"
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          className="auth-input"
+          type="password"
+          value={password}
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        {err && <p className="auth-error">{err}</p>}
 
-        <div className="auth-switch">
-          {mode === "login" ? (
-            <div className="auth-switch--wrapper">
-              <button onClick={onForgotPassword} className="auth-link">
-                Forgot your password?
+        <button
+          type="submit"
+          className="auth-btn auth-submit"
+          disabled={loading}
+        >
+          {loading ? "loading..." : mode === "login" ? "Log in" : "Sign up"}
+        </button>
+      </form>
+      </div>
+
+      <div className="auth-switch">
+        {mode === "login" ? (
+          <div className="auth-switch--wrapper">
+            <button onClick={onForgotPassword} className="auth-link">
+              Forgot your password?
+            </button>
+            <div className="auth__bottom--strip">
+              <button
+                onClick={() => {
+                  setErr("");
+                  setMode("signup");
+                }}
+                className="auth-link auth-link--strong"
+              >
+                Don't have an account?
               </button>
-              <div className="auth-bottom--strip">
-                <button
-                  onClick={() => {
-                    setErr("");
-                    setMode("signup");
-                  }}
-                  className="auth-link auth-link--strong"
-                >
-                  Don't have an account?
-                </button>
-              </div>
             </div>
-          ) : (
-            showSwitch && (
-              <div className="auth-bottom--strip">
-                <button
-                  onClick={() => {
-                    setErr("");
-                    setMode("login");
-                  }}
-                >
-                  Already have an account?
-                </button>
-              </div>
-            )
-          )}
-        </div>
+          </div>
+        ) : (
+          showSwitch && (
+            <div className="auth-bottom--strip">
+              <button
+                onClick={() => {
+                  setErr("");
+                  setMode("login");
+                }}
+              >
+                Already have an account?
+              </button>
+            </div>
+          )
+        )}
       </div>
     </>
   );
@@ -193,4 +204,3 @@ export default function AuthForm({
 function signIn(arg0: string) {
   throw new Error("Function not implemented.");
 }
-
