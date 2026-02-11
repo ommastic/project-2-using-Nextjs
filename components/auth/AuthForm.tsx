@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { FaRegUser } from "react-icons/fa";
 import ForgotPasswordModal from "./ForgotPasswordModal";
+import Link from "next/link";
 
 type Mode = "login" | "signup";
 
@@ -93,17 +94,12 @@ export default function AuthForm({
       {showAltAuth && mode === "login" && (
         <>
           <div className="auth-actions">
-            <button
-              type="button"
-              className="auth-btn auth-btn-guest"
-              onClick={loginGuest}
-              disabled={guestLoading || loading}
-            >
+            <Link href="/for-you" className="auth-btn auth-btn-guest">
               <span className="user-icon">
-                <FaRegUser width={24} height={24} />
+                <FaRegUser size={24} />
               </span>
               Login as a Guest
-            </button>
+            </Link>
 
             <div className="auth-divider">
               <div className="auth-divider-line" />

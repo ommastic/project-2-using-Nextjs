@@ -1,6 +1,7 @@
 "use client"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import AuthModal from "./AuthModal"
+import { usePathname } from "next/navigation"
 
 type AuthCtx = {
     openLogin: () => void;
@@ -10,12 +11,19 @@ type AuthCtx = {
 
 const AuthContext = createContext<AuthCtx | null>(null)
 
-export function AuthModaProvider({children}: {children: React.ReactNode}){
+export function AuthModalProvider({children}: {children: React.ReactNode}){
     const [open, setOpen] = useState(false)
     const [user, setUser] = useState<any>(null)
+    const pathname = usePathname()
+
+    useEffect(() => {
+        setOpen(false)
+    }, [pathname])
 
     const openLogin =  () => setOpen(true)
     const closeLogin =  () => setOpen(false)
+
+   
 
     return (
         <AuthContext.Provider value={{openLogin, closeLogin, user}}>

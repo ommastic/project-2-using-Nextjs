@@ -204,7 +204,6 @@ button:disabled {
   padding: 16px;
 }
 
-
 .auth__modal--inner {
   padding: 48px 32px 24px;
 }
@@ -215,7 +214,7 @@ button:disabled {
 } */
 
 /*Form*/
-.auth-title{
+.auth-title {
   display: flex;
   color: #032b41;
   font-size: 20px;
@@ -251,7 +250,6 @@ button:disabled {
   align-items: center;
   display: flex;
   flex-direction: column;
-
 }
 .auth__modal {
   position: relative;
@@ -340,8 +338,6 @@ button:disabled {
 
 .user-icon {
   position: absolute;
- 
- 
 }
 
 .auth-btn-guest:hover {
